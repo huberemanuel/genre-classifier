@@ -25,3 +25,16 @@ def stratified_kfolds(target, k, classes):
         folds_final[i] = (train_index[i], test_index[i])
 
     return folds_final
+
+def stratified_holdOut(target, pTrain):
+
+    train_index = []
+    test_index = []
+
+    classes = np.unique(target)
+    m = [len(np.where(target == c)[0]) for c in classes]
+    for i, c in enumerate(classes):
+        train_index = np.union1d(train_index, np.where(target == c)[0][:int(pTrain*m[i])]).astype('int')
+        test_index  = np.union1d(test_index , np.where(target == c)[0][int(pTrain*m[i]):]).astype('int')
+
+    return train_index, test_index
