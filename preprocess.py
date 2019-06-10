@@ -11,6 +11,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import wordnet
 from gensim.models import Word2Vec
+from keras.preprocessing.text import Tokenizer
 
 
 def pre_process(doc, c_sinonimo, metodo):
