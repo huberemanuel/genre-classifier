@@ -35,6 +35,7 @@ class MLP():
 
         # Qtde de amostras
         m = X.shape[0]
+        eps = 1e-15
                  
         # A variavel a seguir precisa ser retornada corretamente
         J = 0;
@@ -51,7 +52,7 @@ class MLP():
             
         h = self.sigmoid(np.dot(a2,Theta2.T))
 
-        J = (1/m)*(np.sum(np.sum((-Y*np.log(h)) - (1-Y)*np.log(1 - h))))
+        J = (1/m)*(np.sum(np.sum((-Y*np.log(h+eps)) - (1-Y)*np.log((1 - h)+eps))))
 
         return J
 
@@ -140,7 +141,7 @@ class MLP():
     def fit(self, X, Y):
 
         print('\nTreinando a rede neural.......')
-        print('.......(Aguarde, pois esse processo por ser um pouco demorado.)\n')
+        print('.......(Aguarde, pois esse processo pode ser um pouco demorado.)\n')
 
         # Apos ter completado toda a tarefa, mude o parametro MaxIter para
         # um valor maior e verifique como isso afeta o treinamento.
