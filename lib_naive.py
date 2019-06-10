@@ -12,11 +12,13 @@ class NaiveBayes():
 
         self.labels = np.unique(Y)
 
+        X = np.where(X > 1, 1, 0)
+
         self.pClasse = np.zeros((len(np.unique(Y)),1))
 
         for i in self.labels:
             self.pClasse[i] = sum(Y==i)/len(Y)
-        
+            
         self.pAtrLabel = np.zeros((X.shape))
 
         for i in self.labels:

@@ -5,7 +5,7 @@ class KNN():
 
     #Class responsible for K-nearest neighbors
     #Initialize only with the number os neighbors, default =1
-    def __init__(self, neigh=1):
+    def __init__(self, neigh=3):
         self.k = neigh
         self.X = 0.0
         self.Y = 0.0
