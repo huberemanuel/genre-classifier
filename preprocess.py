@@ -1,4 +1,5 @@
 import numpy as np
+import string
 import nltk
 nltk.download('averaged_perceptron_tagger')
 nltk.download('stopwords')
