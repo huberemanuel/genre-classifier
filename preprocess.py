@@ -112,12 +112,9 @@ def pre_process(doc, c_sinonimo, metodo):
         dado_preprocessado.append(doc_trans)
     return dado_preprocessado
 
-def bow_transform(sentences, max_words):
-    tokenizer = Tokenizer(num_words = max_words)
-    #filters=None #não pode filtrar "_"
-    tokenizer.fit_on_texts(sentences)
+def bow_transform(sentences, tokenizer):
     dataset = tokenizer.texts_to_matrix(sentences)
-    return tokenizer, dataset
+    return dataset
 
 # Proximidade semântica com janela (window=3) igual a 3 e tamanho de neurônios(size) igual a 100 (size=100)
 # utilizando a técnica de cbow (sg=2)
