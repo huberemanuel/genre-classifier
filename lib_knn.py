@@ -9,7 +9,7 @@ class KNN():
         self.k = neigh
         self.X = 0.0
         self.Y = 0.0
-        self.X_pred = 0.0
+        #self.X_pred = 0.0
     #Help function to calculate the distance
     def distancia(self,X_pred,X):
 
@@ -17,10 +17,10 @@ class KNN():
         D = np.zeros(m) # Inicializa a matriz de distâncias D
 
         for i in range(m):
-            dist = (self.X_pred - self.X[i])**2
+            dist = (X_pred - self.X[i])**2
             dist = dist.sum()
             D[i] = np.sqrt(dist)
-
+            
         return D
     #Fit method to store the dataset
     def fit(self, X, Y):
@@ -31,15 +31,17 @@ class KNN():
     #Predict method which return the K-nearest neighbor for given sample
     def predict(self, X_pred):
 
-        self.X_pred = X_pred
+        #self.X_pred = X_pred
+        label = np.zeros((X_pred.shape[0]))
 
-        dist = self.distancia(self.X_pred,self.X)
-        kviz = dist.argsort()
+        for i in range(len(X_pred)):
+            dist = self.distancia(X_pred[i],self.X)
+            kviz = dist.argsort()
 
-        ind_viz = kviz[0:self.k]
-        y1 = self.Y[ind_viz]
-        vote = np.bincount(y1)
-        label = np.argmax(vote)
+            ind_viz = kviz[0:self.k]
+            y1 = self.Y[ind_viz]
+            vote = np.bincount(y1)
+            label[i] = np.argmax(vote)
 
         return label
 
